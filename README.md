@@ -35,6 +35,57 @@ User username: **user**
 
 User password: **password**
 
+### install java
+```sudo yum install java-17-amazon-corretto -y```
+
+### install jenkins
+```
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo yum upgrade
+```
+
+### Add required dependencies for the jenkins package
+```
+sudo yum install fontconfig java-17-openjdk
+sudo yum install jenkins
+sudo systemctl daemon-reload
+```
+### You can enable the Jenkins service to start at boot with the command:
+```sudo systemctl enable jenkins```
+
+### You can start the Jenkins service with the command:
+```sudo systemctl start jenkins```
+
+### You can check the status of the Jenkins service using the command:
+```sudo systemctl status jenkins```
+
+once the jenkins has installed, open the jenkins console and configure the slave agent
+
+### Now install some plugins
+```sonarqube``` - code quality and security analysis platform
+
+```jdk``` - This is useful when you have projects that require different Java versions to compile and execute
+
+```docker``` - This plugin integrates Jenkins with Docker.
+
+```Docker Pipeline``` - Build and use Docker containers from pipelines.
+
+```docker-build-step``` - This plugin allows to add various docker commands to your job as build steps.
+
+```CloudBees Docker Build and PublishVersion``` - This plugin enables building Dockerfile based projects, as well as publishing of the built                                                                   images/repos to the docker registry.
+           
+ ```owasp``` - security plugin
+
+### once we are insatalling the plugins , we can see those plugins in the 'tools configuration'. now go to tools:
+```
+- install jdk (name, install automatically, Install from adoptium.net, jdk.17....
+- maven (3.6.0)
+- docker (install from docker.com, latest)
+- sonarqube (select latest version)
+```
+
 ### Maven Wrapper
 
 #### Using the Maven Plugin
